@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Break Glass Setup</title>
+<style>
+:root { --bg: #f4f6fb; --card: #ffffff; --ink: #1b1d2a; --muted: #5d6478; --line: #e1e5ef; --accent: #2a7cff; --ok: #1e9e4a; --chip: #eef3ff; --off: #9aa0b0; --warn: #b86a00; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #12141c; --card: #1b1e29; --ink: #eef0f7; --muted: #a2a9bd; --line: #2c3142; --accent: #5aa0ff; --ok: #4cd37c; --chip: #23293a; --off: #6c7386; --warn: #ffb44a; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 1060px; margin: 0 auto; padding: 28px 16px 60px; }
+h1 { font-size: 28px; margin: 0 0 4px; }
+h2 { font-size: 19px; margin: 34px 0 10px; }
+h2 small { font-size: 13px; color: var(--muted); font-weight: 500; }
+p.sub { color: var(--muted); margin: 0 0 8px; }
+p.warn { color: var(--warn); font-weight: 600; margin: 8px 0; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 6px 16px; }
+.field { display: grid; grid-template-columns: 210px 1fr auto; gap: 12px; align-items: start; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.field:last-child { border-bottom: none; }
+.label { color: var(--muted); font-weight: 600; padding-top: 2px; }
+.val { white-space: pre-wrap; word-break: break-word; }
+.mono, code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 13.5px; }
+button.copy { border: 1px solid var(--line); background: var(--chip); color: var(--ink); border-radius: 8px; padding: 4px 10px; font: 600 13px system-ui, sans-serif; cursor: pointer; }
+button.copy:hover { border-color: var(--accent); }
+button.copy.done { color: var(--ok); border-color: var(--ok); }
+.tablewrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+table { border-collapse: collapse; width: 100%; min-width: 640px; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-size: 13px; font-weight: 600; background: var(--chip); }
+tr:last-child td { border-bottom: none; }
+td.on { color: var(--ok); font-weight: 700; white-space: nowrap; }
+td.off { color: var(--off); white-space: nowrap; }
+td.why { color: var(--muted); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 0; }
+.tag { border: 1px solid var(--line); background: var(--chip); border-radius: 7px; padding: 2px 9px; font-size: 13px; font-weight: 600; }
+ol.steps { padding-left: 20px; margin: 0; } ol.steps li { margin: 6px 0; }
+@media (max-width: 640px) { .field { grid-template-columns: 1fr auto; } .label { grid-column: 1 / -1; } }
+.covers { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; align-items: start; }
+.covers figure { margin: 0; }
+.covers img { width: 100%; border-radius: 10px; border: 2px solid rgba(255,255,255,0.18); display: block; }
+.covers figcaption { margin-top: 6px; font-size: 13px; opacity: 0.85; display: flex; justify-content: space-between; gap: 8px; }
+.covers a { color: inherit; font-weight: 700; }
+@media (max-width: 700px) { .covers { grid-template-columns: 1fr; } }
+.covers { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; align-items: start; }
+.covers figure { margin: 0; }
+.covers img { width: 100%; border-radius: 10px; border: 2px solid rgba(255,255,255,0.18); display: block; }
+.covers figcaption { margin-top: 6px; font-size: 13px; opacity: 0.85; display: flex; justify-content: space-between; gap: 8px; }
+.covers a { color: inherit; font-weight: 700; }
+@media (max-width: 700px) { .covers { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+    <h1>+1 Speed to Break Glass: Create New Game</h1>
+    <p class="sub">Every field of the dev.bloxity.io Manage Games &rarr; <b>Create New Game</b> form, top to bottom. Click Copy to copy a value. This game has <b>no in-app purchases</b>: sneakers, rebirths, trails, auras, x2 Speed and x2 Shards all cost Shards or Gems earned in the game.</p>
+    <p class="warn">Use the <b>prod</b> URL (https://speed-to-break-glass.play.bloxity.io/) everywhere, never a .dev.play.bloxity.io one. It works once the game is hosted (see Hosting steps).</p>
+    <p class="warn">If the form opens with another game's values already in it (slug, name, webhook URL, release date), replace or clear every one of them.</p>
+
+    <h2>Basic Info</h2>
+    <div class="card">
+    <div class="field"><div class="label">Slug *</div><div class="val mono">speed-to-break-glass</div><button class="copy" data-v="speed-to-break-glass">Copy</button></div>
+    <div class="field"><div class="label">Name *</div><div class="val">+1 Speed to Break Glass</div><button class="copy" data-v="+1 Speed to Break Glass">Copy</button></div>
+    <div class="field"><div class="label">SEO Name (optional)</div><div class="val">+1 Speed to Break Glass - Run Faster, Smash Glass, Race Friends | Free 3D Multiplayer Simulator Game</div><button class="copy" data-v="+1 Speed to Break Glass - Run Faster, Smash Glass, Race Friends | Free 3D Multiplayer Simulator Game">Copy</button></div>
+    <div class="field"><div class="label">Developer</div><div class="val">Your choice (Show developer and the community)</div><span></span></div>
+    <div class="field"><div class="label">Game Source *</div><div class="val">Choose <b>External URL</b> (not Upload ZIP): the game is hosted by Legion.</div><span></span></div>
+    <div class="field"><div class="label">Game URL</div><div class="val mono">https://speed-to-break-glass.play.bloxity.io/</div><button class="copy" data-v="https://speed-to-break-glass.play.bloxity.io/">Copy</button></div>
+    <div class="field"><div class="label">Raw URL (optional)</div><div class="val mono">https://speed-to-break-glass.play.bloxity.io/</div><button class="copy" data-v="https://speed-to-break-glass.play.bloxity.io/">Copy</button></div>
+    <div class="field"><div class="label">CG URL (optional)</div><div class="val"><span style="color:var(--off)">Leave empty</span></div><span></span></div>
+    <div class="field"><div class="label">Additional Game Domains</div><div class="val mono">speed-to-break-glass.play.bloxity.io
+speed-to-break-glass.host.bloxity.io</div><button class="copy" data-v="speed-to-break-glass.play.bloxity.io
+speed-to-break-glass.host.bloxity.io">Copy</button></div>
+    <div class="field"><div class="label">Short Description</div><div class="val">Every step makes you faster, and Speed is what breaks glass! Smash through corridors of panes, grab the Shards behind them and race friends in Glass Rush.</div><button class="copy" data-v="Every step makes you faster, and Speed is what breaks glass! Smash through corridors of panes, grab the Shards behind them and race friends in Glass Rush.">Copy</button></div>
+    <div class="field"><div class="label">Description</div><div class="val">Every step gives you Speed, and Speed is what breaks glass. Run down a long corridor of giant panes: push one and its health drains at your Speed while cracks spread across it, until it bursts into hundreds of flying shards. Behind each stage a Shard Pad pays out and sends you home, and the further the stage, the more Shards. Spend them on 18 pairs of sneakers that make every step worth more, stand on treadmills to train while you watch the numbers climb (up to x35), and rebirth to multiply it all for good. Clear the last stage of a world to open the next: Glasshouse Gardens, Skyline Sprint, Frostpane Peaks and Ember Foundry, each with tougher glass and far bigger rewards. Press PLAY for Glass Rush: everyone who presses it together races through a field of shared panes, where the holes you smash are there for everyone and the giant pane at the end takes all of you. Races get longer, tougher and better paid as your Level climbs. Tap AUTO RUN and the game plays the whole loop for you. Spin the wheel, open the FREE chest, finish quests and daily tasks, claim FREE gifts and the daily reward, and top the leaderboards.</div><button class="copy" data-v="Every step gives you Speed, and Speed is what breaks glass. Run down a long corridor of giant panes: push one and its health drains at your Speed while cracks spread across it, until it bursts into hundreds of flying shards. Behind each stage a Shard Pad pays out and sends you home, and the further the stage, the more Shards. Spend them on 18 pairs of sneakers that make every step worth more, stand on treadmills to train while you watch the numbers climb (up to x35), and rebirth to multiply it all for good. Clear the last stage of a world to open the next: Glasshouse Gardens, Skyline Sprint, Frostpane Peaks and Ember Foundry, each with tougher glass and far bigger rewards. Press PLAY for Glass Rush: everyone who presses it together races through a field of shared panes, where the holes you smash are there for everyone and the giant pane at the end takes all of you. Races get longer, tougher and better paid as your Level climbs. Tap AUTO RUN and the game plays the whole loop for you. Spin the wheel, open the FREE chest, finish quests and daily tasks, claim FREE gifts and the daily reward, and top the leaderboards.">Copy</button></div>
+    </div>
+
+    <h2>Checkboxes</h2>
+    <div class="tablewrap"><table><thead><tr><th>Option</th><th>Set to</th><th>Why</th></tr></thead><tbody>
+        <tr><td>SDK Support</td><td class="on">&#9745; ON</td><td class="why">The game loads the Bloxity SDK (login, avatars, chat, emotes, settings).</td></tr>
+        <tr><td>LoadingEnd Support</td><td class="on">&#9745; ON</td><td class="why">The game calls loadingEnd() as soon as it has joined a server (no start menu).</td></tr>
+        <tr><td>Active</td><td class="on">&#9745; ON</td><td class="why">So players can find it.</td></tr>
+        <tr><td>Disable from Discovery</td><td class="off">&#9744; OFF</td><td class="why">Only if you want to share the link before it is listed.</td></tr>
+        <tr><td>Disable on New Games category</td><td class="off">&#9744; OFF</td><td class="why"></td></tr>
+        <tr><td>Add to Pre Release category</td><td class="off">&#9744; OFF</td><td class="why"></td></tr>
+        <tr><td>Under Maintenance</td><td class="off">&#9744; OFF</td><td class="why"></td></tr>
+        <tr><td>Show Boxity Chat</td><td class="on">&#9745; ON</td><td class="why">Chat bubbles appear over players in the world.</td></tr>
+        <tr><td>In-game Voice</td><td class="on">&#9745; ON</td><td class="why">The game reports its room, so players on the same server can talk.</td></tr>
+        <tr><td>Show Missions Button</td><td class="off">&#9744; OFF</td><td class="why">The game has its own daily tasks and quests.</td></tr>
+        <tr><td>Mobile Force Landscape</td><td class="off">&#9744; OFF</td><td class="why">The game is built to play held upright (the vertical feed) as well as sideways.</td></tr>
+        <tr><td>Disable for CG</td><td class="off">&#9744; OFF</td><td class="why"></td></tr>
+        <tr><td>Disable for MSN</td><td class="off">&#9744; OFF</td><td class="why"></td></tr>
+        <tr><td>Enable New ESC Menu</td><td class="on">&#9745; ON</td><td class="why">ESC opens the portal menu; the game reports its room id.</td></tr>
+    </tbody></table></div>
+    <div class="card" style="margin-top:12px">
+    <div class="field"><div class="label">Engine</div><div class="val">three.js (only an admin can set this)</div><span></span></div>
+    <div class="field"><div class="label">Page Layout</div><div class="val">Classic</div><span></span></div>
+    </div>
+
+    <h2>Cover Images</h2>
+    <div class="card">
+        <div class="covers">
+            <figure><img src="covers/cover-1920x1080.png" alt="+1 Speed to Break Glass landscape cover"><figcaption><span>Landscape 16:9 * · 1920 x 1080</span><a href="covers/cover-1920x1080.png" download>Download</a></figcaption></figure>
+            <figure><img src="covers/cover-800x800.png" alt="+1 Speed to Break Glass square cover"><figcaption><span>Square 1:1 * · 800 x 800</span><a href="covers/cover-800x800.png" download>Download</a></figcaption></figure>
+        </div>
+        <p class="sub" style="margin-top:8px">Both are rendered from the game itself (a pane of Glasshouse Gardens the moment it goes). Files: <code>covers/cover-1920x1080.png</code>, <code>covers/cover-800x800.png</code>.</p>
+    </div>
+
+    <h2>Tags <small>(18)</small></h2>
+    <div class="card"><div class="tags"><span class="tag">Simulator</span><span class="tag">Obby</span><span class="tag">Running</span><span class="tag">Racing</span><span class="tag">Clicker</span><span class="tag">Idle</span><span class="tag">Satisfying</span><span class="tag">Multiplayer</span><span class="tag">Casual</span><span class="tag">3D</span><span class="tag">Roblox-style</span><span class="tag">Family-friendly</span><span class="tag">Kid-friendly</span><span class="tag">In-game Currency</span><span class="tag">Leaderboards</span><span class="tag">Rebirth</span><span class="tag">Long Session</span><span class="tag">Mobile Friendly</span></div></div>
+    <p class="sub" style="margin-top:8px">Pick each from the form's tag bank; if one isn't there, use the closest it has (Action for Running, Adventure for Obby).</p>
+
+    <h2>In-App Purchases <small>(none)</small></h2>
+    <div class="card">
+    <div class="field"><div class="label">IAPs</div><div class="val">Leave empty. Everything is bought with Shards or Gems inside the game.</div><span></span></div>
+    <div class="field"><div class="label">Default Webhook URL</div><div class="val"><span style="color:var(--off)">Clear it (no purchases, no webhook)</span></div><span></span></div>
+    </div>
+
+    <h2>Release</h2>
+    <div class="card">
+    <div class="field"><div class="label">Release date &amp; time</div><div class="val">Click <b>Clear</b> so it publishes as soon as it is Active.</div><span></span></div>
+    </div>
+    <p class="sub" style="margin-top:10px">Then click <b>Create Game</b>.</p>
+
+    <h2>Hosting steps</h2>
+    <div class="card" style="padding:14px 16px"><ol class="steps">
+        <li>GitHub: create the empty repo <code>LEGiON-Platforms/speed-to-break-glass</code> (no README) and add the repo secret <code>LEGION_DEPLOY_TOKEN</code>.</li>
+        <li>hosting.bloxity.io: the app <code>speed-to-break-glass</code> must exist (its id is <code>GAME_ID</code> in <code>.github/workflows/deploy.yml</code>).</li>
+        <li>Push the code to <code>main</code> (as <code>asivixlp44-cmyk</code>): the workflow builds the server image and the client and deploys both.</li>
+        <li>Check <code>https://speed-to-break-glass.host.bloxity.io/health</code> (it should say <code>"db": true</code>: Legion provides <code>MONGODB_URI</code>) and play at <code>https://speed-to-break-glass.play.bloxity.io</code>.</li>
+        <li>Create the game in Manage Games with the values above (slug exactly <code>speed-to-break-glass</code>).</li>
+    </ol></div>
+</main>
+<script>
+document.addEventListener('click', async (e) => {
+    const b = e.target.closest('button.copy');
+    if (!b || !b.dataset.v) return;
+    try { await navigator.clipboard.writeText(b.dataset.v); }
+    catch (err) { const t = document.createElement('textarea'); t.value = b.dataset.v; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); }
+    const old = b.textContent; b.textContent = '✓'; b.classList.add('done');
+    setTimeout(() => { b.textContent = old; b.classList.remove('done'); }, 1200);
+});
+</script>
+</body>
+</html>
